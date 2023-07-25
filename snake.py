@@ -15,12 +15,15 @@ rows = 20
 class cube():
     rows = 20
     w = 500
+
+    
     def __init__(self, start, dirnx=1, dirny=0, color=(255,0,0)):
         self.pos = start
         self.dirnx = dirnx
         self.dirny = dirny # "L", "R", "U", "D"
         self.color = color
 
+    
     def move(self, dirnx, dirny):
         self.dirnx = dirnx
         self.dirny = dirny
@@ -46,6 +49,7 @@ class cube():
 class snake():
     body = []
     turns = {}
+
     
     def __init__(self, color, pos):
         #pos is given as coordinates on the grid ex (1,5)
@@ -54,6 +58,7 @@ class snake():
         self.body.append(self.head)
         self.dirnx = 0
         self.dirny = 1
+
     
     def move(self):
         for event in pygame.event.get():
@@ -98,6 +103,7 @@ class snake():
         self.dirnx = 0
         self.dirny = 1
 
+    
     def addCube(self):
         tail = self.body[-1]
         dx, dy = tail.dirnx, tail.dirny
@@ -113,6 +119,7 @@ class snake():
 
         self.body[-1].dirnx = dx
         self.body[-1].dirny = dy
+
     
     def draw(self, surface):
         for i,c in enumerate(self.body):
@@ -120,7 +127,6 @@ class snake():
                 c.draw(surface, True)
             else:
                 c.draw(surface)
-
 
 
 def redrawWindow():
@@ -131,7 +137,6 @@ def redrawWindow():
     snack.draw(win)
     pygame.display.update()
     pass
-
 
 
 def drawGrid(w, rows, surface):
@@ -146,7 +151,6 @@ def drawGrid(w, rows, surface):
         pygame.draw.line(surface, (255,255,255), (x, 0),(x,w))
         pygame.draw.line(surface, (255,255,255), (0, y),(w,y))
     
-
 
 def randomSnack(rows, item):
     positions = item.body
@@ -192,7 +196,6 @@ def main():
                     
         redrawWindow()
 
-main()
-    
-
+if __name__ == '__main__':
+    main()
     
